@@ -19,7 +19,7 @@ class AllContries extends StatelessWidget {
                 onTap: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (context) => Country(),
+                      builder: (context) => Country('Sri Lanaka'),
                     ),
                   );
                 },
