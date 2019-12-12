@@ -44,7 +44,7 @@ class _AllContriesState extends State<AllContries> {
                     onTap: () {
                       Navigator.of(context).push(
                         MaterialPageRoute(
-                          builder: (context) => Country(snapshot.data[index]['name']),
+                          builder: (context) => Country(snapshot.data[index]),
                         ),
                       );
                     },
