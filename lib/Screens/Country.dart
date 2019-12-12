@@ -23,27 +23,35 @@ class Country extends StatelessWidget {
             FlipCard(
               direction: FlipDirection.HORIZONTAL, // default
               front: CountryCard(title: 'Capital'),
-              back: DetailCard(title: country['capital']),
+              back: DetailCard(title: country['capital'], bgcolor: Colors.deepOrange,),
             ),
             FlipCard(
               direction: FlipDirection.HORIZONTAL, // default
               front: CountryCard(title: 'Population'),
-              back: DetailCard(title: country['population'].toString()),
+              back: DetailCard(title: country['population'].toString(),bgcolor: Colors.deepPurple,),
             ),
             FlipCard(
               direction: FlipDirection.HORIZONTAL, // default
               front: CountryCard(title: 'Flag'),
-              back: DetailCard(title: country['flag']),
+              back: Card(
+                color: Colors.green,
+                elevation: 10,
+                child: Center(
+                  child: Image(
+
+                  ),
+                ),
+              ),
             ),
             FlipCard(
               direction: FlipDirection.HORIZONTAL, // default
               front: CountryCard(title: 'Currency'),
-              back: DetailCard(title: 'hello'),
+              back: DetailCard(title: country['currencies'][0]['name'], bgcolor: Colors.blue,),
             ),
             FlipCard(
               direction: FlipDirection.HORIZONTAL, // default
               front: CountryCard(title: 'Show On Map'),
-              back: DetailCard(title: 'hello'),
+              back: DetailCard(title: 'hello', bgcolor: Colors.green,),
             ),
           ],
         ),
@@ -72,14 +80,15 @@ class CountryCard extends StatelessWidget {
 
 class DetailCard extends StatelessWidget {
   final String title;
+  final MaterialColor bgcolor;
 
-  DetailCard({this.title});
+  DetailCard({this.title, this.bgcolor});
 
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return Card(
-      color: Colors.deepOrange,
+      color: bgcolor,
       elevation: 10,
       child: Center(
         child: Text(
