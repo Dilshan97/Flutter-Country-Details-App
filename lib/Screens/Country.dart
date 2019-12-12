@@ -2,13 +2,17 @@ import 'package:flip_card/flip_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import 'CountryMap.dart';
+
 class Country extends StatelessWidget {
+  static const routeName = '/country';
   final Map country;
 
   Country(this.country);
 
   @override
   Widget build(BuildContext context) {
+    final Map country = ModalRoute.of(context).settings.arguments;
     // TODO: implement build
     return Scaffold(
       appBar: AppBar(
@@ -24,12 +28,18 @@ class Country extends StatelessWidget {
             FlipCard(
               direction: FlipDirection.HORIZONTAL, // default
               front: CountryCard(title: 'Capital'),
-              back: DetailCard(title: country['capital'], bgcolor: Colors.deepOrange,),
+              back: DetailCard(
+                title: country['capital'],
+                bgcolor: Colors.deepOrange,
+              ),
             ),
             FlipCard(
               direction: FlipDirection.HORIZONTAL, // default
               front: CountryCard(title: 'Population'),
-              back: DetailCard(title: country['population'].toString(),bgcolor: Colors.deepPurple,),
+              back: DetailCard(
+                title: country['population'].toString(),
+                bgcolor: Colors.deepPurple,
+              ),
             ),
             FlipCard(
               direction: FlipDirection.HORIZONTAL, // default
@@ -48,12 +58,22 @@ class Country extends StatelessWidget {
             FlipCard(
               direction: FlipDirection.HORIZONTAL, // default
               front: CountryCard(title: 'Currency'),
-              back: DetailCard(title: country['currencies'][0]['name'], bgcolor: Colors.blue,),
+              back: DetailCard(
+                title: country['currencies'][0]['name'],
+                bgcolor: Colors.blue,
+              ),
             ),
-            FlipCard(
-              direction: FlipDirection.HORIZONTAL, // default
-              front: CountryCard(title: 'Show On Map'),
-              back: DetailCard(title: 'hello', bgcolor: Colors.green,),
+            GestureDetector(
+              child: CountryCard(
+                title: 'Show On Map',
+              ),
+              onTap: () {
+                Navigator.of(context).pushNamed(CountryMap.routeName,
+                    arguments: {
+                      'name': country['name'],
+                      'latlng': country['latlng']
+                    });
+              },
             ),
           ],
         ),

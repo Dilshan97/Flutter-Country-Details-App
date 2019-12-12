@@ -17,6 +17,8 @@
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
             android:hardwareAccelerated="true"
             android:windowSoftInputMode="adjustResize">
+            <meta-data android:name="com.google.android.geo.API_KEY"
+                android:value="AIzaSyAsWan8XuW-z8OCw7dd2Gnwe3ICBqVA-jg"/>
             <!-- This keeps the window background of the activity showing
                  until Flutter renders its first frame. It can be removed if
                  there is no splash screen (such as the default splash screen
