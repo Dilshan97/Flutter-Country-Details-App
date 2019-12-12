@@ -32,19 +32,19 @@ class Country extends StatelessWidget {
 }
 
 class CountryCard extends StatelessWidget {
-
   final String title;
 
-  const CountryCard({
-    Key key,
-    this.title
-  }) : super(key: key);
+  const CountryCard({Key key, this.title}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Card(
       elevation: 10,
-      child: Center(child: Text(title, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),)),
+      child: Center(
+          child: Text(
+        title,
+        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+      )),
     );
   }
 }
