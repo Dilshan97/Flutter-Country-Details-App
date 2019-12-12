@@ -3,7 +3,13 @@ import 'package:flutter/material.dart';
 
 import 'Country.dart';
 
-class AllContries extends StatelessWidget {
+class AllContries extends StatefulWidget {
+
+  @override
+  _AllContriesState createState() => _AllContriesState();
+}
+
+class _AllContriesState extends State<AllContries> {
 
   void getCountries() async {
     var response = await Dio().get('https://restcountries.eu/rest/v2/all');
