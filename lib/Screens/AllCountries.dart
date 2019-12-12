@@ -1,10 +1,20 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
 import 'Country.dart';
 
 class AllContries extends StatelessWidget {
+
+  void getCountries() async {
+    var response = await Dio().get('https://restcountries.eu/rest/v2/all');
+    print(response.data);
+  }
+
   @override
   Widget build(BuildContext context) {
+
+    getCountries();
+
     // TODO: implement build
     return Scaffold(
       appBar: AppBar(
