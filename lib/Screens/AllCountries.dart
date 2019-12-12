@@ -12,6 +12,7 @@ class _AllContriesState extends State<AllContries> {
   bool isSearching = false;
 
   List countries = [];
+  List filteredCountries = [];
 
   getCountries() async {
     var response = await Dio().get('https://restcountries.eu/rest/v2/all');
@@ -22,13 +23,20 @@ class _AllContriesState extends State<AllContries> {
   void initState() {
     getCountries().then((data) {
       setState(() {
-        countries = data;
+        countries = filteredCountries = data;
       });
     });
     super.initState();
   }
 
-  void _filterCountry(value) {}
+  void _filterCountry(value) {
+    setState(() {
+      filteredCountries = countries
+          .where((country) =>
+              country['name'].toLowerCase().contains(value.toLowerCase()))
+          .toList();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -61,6 +69,7 @@ class _AllContriesState extends State<AllContries> {
                   onPressed: () {
                     setState(() {
                       this.isSearching = false;
+                      filteredCountries = countries;
                     });
                   },
                 )
@@ -76,15 +85,16 @@ class _AllContriesState extends State<AllContries> {
       ),
       body: Container(
           padding: EdgeInsets.all(10),
-          child: countries.length > 0
+          child: filteredCountries.length > 0
               ? ListView.builder(
-                  itemCount: countries.length,
+                  itemCount: filteredCountries.length,
                   itemBuilder: (BuildContext context, int index) {
                     return GestureDetector(
                       onTap: () {
                         Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: (context) => Country(countries[index]),
+                            builder: (context) =>
+                                Country(filteredCountries[index]),
                           ),
                         );
                       },
@@ -95,7 +105,7 @@ class _AllContriesState extends State<AllContries> {
                           padding: const EdgeInsets.symmetric(
                               vertical: 10, horizontal: 8),
                           child: Text(
-                            countries[index]['name'],
+                            filteredCountries[index]['name'],
                             style: TextStyle(fontSize: 10),
                           ),
                         ),
