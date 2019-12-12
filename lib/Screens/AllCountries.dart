@@ -9,6 +9,8 @@ class AllContries extends StatefulWidget {
 }
 
 class _AllContriesState extends State<AllContries> {
+  bool isSearching = false;
+
   Future<List> countries;
 
   Future<List> getCountries() async {
@@ -30,16 +32,46 @@ class _AllContriesState extends State<AllContries> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.cyan,
-        title: Text('All Countries'),
+        title: !isSearching
+            ? Text('All Countries')
+            : TextField(
+                style: TextStyle(color: Colors.white),
+                decoration: InputDecoration(
+                    icon: Icon(
+                      Icons.search,
+                      color: Colors.white,
+                    ),
+                    hintStyle: TextStyle(color: Colors.white),
+                    hintText: 'Search Country Here'),
+              ),
+        actions: <Widget>[
+          isSearching
+              ? IconButton(
+                  icon: Icon(Icons.cancel),
+                  onPressed: () {
+                    setState(() {
+                      this.isSearching = false;
+                    });
+                  },
+                )
+              : IconButton(
+                  icon: Icon(Icons.search),
+                  onPressed: () {
+                    setState(() {
+                      this.isSearching = true;
+                    });
+                  },
+                )
+        ],
       ),
       body: Container(
           padding: EdgeInsets.all(10),
           child: FutureBuilder<List>(
             future: countries,
-            builder: (BuildContext context, AsyncSnapshot<List> snapshot){
-
-              if(snapshot.hasData){
-                return ListView.builder(itemBuilder: (BuildContext context, int index){
+            builder: (BuildContext context, AsyncSnapshot<List> snapshot) {
+              if (snapshot.hasData) {
+                return ListView.builder(
+                    itemBuilder: (BuildContext context, int index) {
                   return GestureDetector(
                     onTap: () {
                       Navigator.of(context).push(
@@ -52,8 +84,8 @@ class _AllContriesState extends State<AllContries> {
                       elevation: 10,
                       color: Colors.blueGrey,
                       child: Padding(
-                        padding:
-                        const EdgeInsets.symmetric(vertical: 10, horizontal: 8),
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 10, horizontal: 8),
                         child: Text(
                           snapshot.data[index]['name'],
                           style: TextStyle(fontSize: 10),
