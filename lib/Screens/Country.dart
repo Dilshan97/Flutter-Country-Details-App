@@ -6,18 +6,24 @@ import 'CountryMap.dart';
 
 class Country extends StatelessWidget {
   static const routeName = '/country';
+
   final Map country;
 
   Country(this.country);
 
+
+
   @override
   Widget build(BuildContext context) {
+
+    print(this.country);
+
     final Map country = ModalRoute.of(context).settings.arguments;
     // TODO: implement build
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.cyan,
-        title: Text(country['name']),
+        title: Text(this.country['name']),
       ),
       body: Container(
         padding: EdgeInsets.all(10),
@@ -29,7 +35,7 @@ class Country extends StatelessWidget {
               direction: FlipDirection.HORIZONTAL, // default
               front: CountryCard(title: 'Capital'),
               back: DetailCard(
-                title: country['capital'],
+                title: this.country['capital'],
                 bgcolor: Colors.deepOrange,
               ),
             ),
@@ -37,7 +43,7 @@ class Country extends StatelessWidget {
               direction: FlipDirection.HORIZONTAL, // default
               front: CountryCard(title: 'Population'),
               back: DetailCard(
-                title: country['population'].toString(),
+                title: this.country['population'].toString(),
                 bgcolor: Colors.deepPurple,
               ),
             ),
@@ -49,7 +55,7 @@ class Country extends StatelessWidget {
                 elevation: 10,
                 child: Center(
                   child: SvgPicture.network(
-                    country['flag'],
+                    this.country['flag'],
                     width: 200,
                   ),
                 ),
@@ -59,7 +65,7 @@ class Country extends StatelessWidget {
               direction: FlipDirection.HORIZONTAL, // default
               front: CountryCard(title: 'Currency'),
               back: DetailCard(
-                title: country['currencies'][0]['name'],
+                title: this.country['currencies'][0]['name'],
                 bgcolor: Colors.blue,
               ),
             ),
