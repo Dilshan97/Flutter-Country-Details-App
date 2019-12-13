@@ -74,11 +74,12 @@ class Country extends StatelessWidget {
                 title: 'Show On Map',
               ),
               onTap: () {
-//                Navigator.of(context).pushNamed(CountryMap.routeName,
-//                    arguments: {
-//                      'name': country['name'],
-//                      'latlng': country['latlng']
-//                    });
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        CountryMap(this.country['name'], this.country['latlng']),
+                  ),
+                );
               },
             ),
           ],

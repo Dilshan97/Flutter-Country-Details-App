@@ -7,10 +7,10 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 class CountryMap extends StatelessWidget {
   Completer<GoogleMapController> _controller = Completer();
 
-  static final CameraPosition _kGooglePlex = CameraPosition(
-    target: LatLng(37.42796133580664, -122.085749655962),
-    zoom: 14.4746,
-  );
+  final String name;
+  final List latlang;
+
+  CountryMap(this.name, this.latlang);
 
   @override
   Widget build(BuildContext context) {
@@ -18,10 +18,13 @@ class CountryMap extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.cyan,
-        title: Text('Map'),
+        title: Text(this.name),
       ),
       body: GoogleMap(
-        initialCameraPosition: _kGooglePlex,
+        initialCameraPosition: CameraPosition(
+          target: LatLng(this.latlang[0], this.latlang[1]),
+          zoom: 5,
+        ),
         onMapCreated: (GoogleMapController controller) {
           _controller.complete(controller);
         },
