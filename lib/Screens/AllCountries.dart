@@ -100,13 +100,13 @@ class _AllContriesState extends State<AllContries> {
                       },
                       child: Card(
                         elevation: 10,
-                        color: Colors.blueGrey,
+                        color: Colors.white,
                         child: Padding(
                           padding: const EdgeInsets.symmetric(
-                              vertical: 10, horizontal: 8),
+                              vertical: 20, horizontal: 8),
                           child: Text(
                             filteredCountries[index]['name'],
-                            style: TextStyle(fontSize: 10),
+                            style: TextStyle(fontSize: 18),
                           ),
                         ),
                       ),

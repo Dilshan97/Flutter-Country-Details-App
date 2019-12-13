@@ -1,4 +1,4 @@
-name: flutter_country_details_app
+name: country_details_app
 description: A new Flutter application.
 
 # The following defines the version and build number for your application.
@@ -19,7 +19,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.

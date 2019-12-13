@@ -1,4 +1,4 @@
-# flutter_country_details_app
+# country_details_app
 
 A new Flutter application.
 
